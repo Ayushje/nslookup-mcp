@@ -1,4 +1,4 @@
-const DEFAULT_API_URL = "https://nslookup.io/api";
+const DEFAULT_API_URL = "https://www.nslookup.io/api";
 
 function getApiUrl(): string {
   return process.env.NSLOOKUP_API_URL || DEFAULT_API_URL;

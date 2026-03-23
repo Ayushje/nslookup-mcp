@@ -58,7 +58,7 @@ npm start
 
 | Environment Variable | Default | Description |
 |---------------------|---------|-------------|
-| `NSLOOKUP_API_URL` | `https://nslookup.io/api` | API base URL |
+| `NSLOOKUP_API_URL` | `https://www.nslookup.io/api` | API base URL |
 
 ## Example Prompts
 
