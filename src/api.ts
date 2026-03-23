@@ -1,11 +1,19 @@
-const DEFAULT_API_URL = "https://www.nslookup.io/api";
+const DEFAULT_BASE_URL = "https://www.nslookup.io";
 
-function getApiUrl(): string {
-  return process.env.NSLOOKUP_API_URL || DEFAULT_API_URL;
+function getBaseUrl(): string {
+  return (process.env.NSLOOKUP_API_URL || DEFAULT_BASE_URL).replace(/\/+$/, "");
 }
 
 export interface ApiOptions {
   timeout?: number;
+  /** API prefix path, e.g. "/api", "/portal-api", "/scanner-api" */
+  prefix?: string;
+}
+
+function buildUrl(path: string, options: ApiOptions = {}): string {
+  const base = getBaseUrl();
+  const prefix = options.prefix ?? "/api";
+  return `${base}${prefix}${path}`;
 }
 
 export async function apiGet(
@@ -13,8 +21,7 @@ export async function apiGet(
   params: Record<string, string>,
   options: ApiOptions = {}
 ): Promise<unknown> {
-  const base = getApiUrl().replace(/\/+$/, "");
-  const url = new URL(`${base}${path}`);
+  const url = new URL(buildUrl(path, options));
   for (const [key, value] of Object.entries(params)) {
     if (value) url.searchParams.set(key, value);
   }
@@ -51,8 +58,7 @@ export async function apiPost(
   body: Record<string, unknown>,
   options: ApiOptions = {}
 ): Promise<unknown> {
-  const base = getApiUrl().replace(/\/+$/, "");
-  const url = new URL(`${base}${path}`);
+  const url = new URL(buildUrl(path, options));
 
   const controller = new AbortController();
   const timeout = setTimeout(

@@ -209,4 +209,127 @@ export function registerTools(server: McpServer): void {
       }
     }
   );
+
+  // Tool 5: SSL Certificate Check — check SSL/TLS certificate for a domain
+  server.tool(
+    "ssl_certificate",
+    "Check the SSL/TLS certificate for a domain. Returns issuer, expiry date, days until expiry, certificate chain validity, cipher strength, SAN domains, fingerprint, and TLS protocol version.",
+    {
+      domain: z.string().describe("Domain name to check SSL certificate for (e.g. github.com)"),
+    },
+    async ({ domain }) => {
+      try {
+        const result = await apiPost(
+          "/v1/certificates/check",
+          { domain },
+          { prefix: "/portal-api", timeout: 15000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
+
+  // Tool 6: BIMI/VMC Check — check BIMI record and VMC certificate for a domain
+  server.tool(
+    "bimi_vmc",
+    "Check BIMI (Brand Indicators for Message Identification) and VMC (Verified Mark Certificate) for a domain. Returns BIMI DNS record status, VMC certificate details, logo URL, trademark info, and expiry.",
+    {
+      domain: z.string().describe("Domain name to check BIMI/VMC for (e.g. google.com)"),
+    },
+    async ({ domain }) => {
+      try {
+        const result = await apiPost(
+          "/v1/vmc/check",
+          { domain },
+          { prefix: "/portal-api", timeout: 15000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
+
+  // Tool 7: Security Scan — scan a domain for DNS and web security issues
+  server.tool(
+    "security_scan",
+    "Run a security scan on a domain to detect DNS misconfigurations, missing SPF/DKIM/DMARC records, cookie security issues, and other web security vulnerabilities. Returns findings with severity levels (critical, high, medium, low, info).",
+    {
+      domain: z.string().describe("Domain name to security scan (e.g. example.com)"),
+    },
+    async ({ domain }) => {
+      try {
+        const result = await apiPost(
+          "/v1/security-scan",
+          { domain },
+          { prefix: "/scanner-api", timeout: 60000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
+
+  // Tool 8: Uptime Check — perform a one-time HTTP availability check
+  server.tool(
+    "uptime_check",
+    "Perform a one-time HTTP uptime check on a URL. Returns whether the site is up or down, HTTP status code, and response time in milliseconds.",
+    {
+      url: z.string().describe("Full URL to check (e.g. https://github.com)"),
+      timeout: z
+        .number()
+        .optional()
+        .describe("Timeout in milliseconds (default: 10000)"),
+    },
+    async ({ url, timeout: checkTimeout }) => {
+      try {
+        const body: Record<string, unknown> = { url };
+        if (checkTimeout) body.timeout = checkTimeout;
+
+        const result = await apiPost(
+          "/v1/uptime/check",
+          body,
+          { prefix: "/portal-api", timeout: 30000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
 }

@@ -1,10 +1,12 @@
 # @nslookup-io/mcp-server
 
-MCP (Model Context Protocol) server for DNS lookups, propagation checks, and domain intelligence — powered by [nslookup.io](https://nslookup.io).
+MCP (Model Context Protocol) server for DNS lookups, SSL certificate checks, security scanning, and domain intelligence — powered by [nslookup.io](https://nslookup.io).
 
-Lets AI assistants like Claude perform real-time DNS queries across 53 record types and 18+ global DNS servers.
+Lets AI assistants like Claude perform real-time DNS queries across 53 record types and 18+ global DNS servers, check SSL certificates, scan for security issues, and more.
 
 ## Tools
+
+### DNS Tools
 
 | Tool | Description |
 |------|-------------|
@@ -12,6 +14,15 @@ Lets AI assistants like Claude perform real-time DNS queries across 53 record ty
 | `dns_record` | Look up a specific DNS record type — supports all 53 types (HTTPS, DNSKEY, TLSA, SPF, etc.) |
 | `dns_propagation` | Check DNS propagation across 18+ global servers (Cloudflare, Google, Quad9, regional, authoritative) |
 | `webservers` | Get IPv4 and IPv6 addresses for a domain |
+
+### Security & Certificate Tools
+
+| Tool | Description |
+|------|-------------|
+| `ssl_certificate` | Check SSL/TLS certificate — issuer, expiry, chain validity, cipher strength, SAN domains, TLS version |
+| `bimi_vmc` | Check BIMI record and VMC (Verified Mark Certificate) — logo URL, trademark info, certificate expiry |
+| `security_scan` | Scan a domain for security issues — SPF/DKIM/DMARC, cookie security, DNS misconfigurations |
+| `uptime_check` | One-time HTTP uptime check — status, response time, HTTP status code |
 
 ### Supported DNS Record Types
 
@@ -58,7 +69,7 @@ npm start
 
 | Environment Variable | Default | Description |
 |---------------------|---------|-------------|
-| `NSLOOKUP_API_URL` | `https://www.nslookup.io/api` | API base URL |
+| `NSLOOKUP_API_URL` | `https://www.nslookup.io` | Base URL for the nslookup.io API |
 
 ## Example Prompts
 
@@ -70,8 +81,10 @@ Once configured, you can ask Claude things like:
 - "What IP addresses does cloudflare.com resolve to?"
 - "Show me the DNSKEY records for example.com"
 - "Check the SPF record for amazon.com"
-- "What's the HTTPS record for cloudflare.com?"
-- "Look up the CAA records for github.com using Google DNS"
+- "Check the SSL certificate for github.com"
+- "Does google.com have a BIMI record?"
+- "Run a security scan on example.com"
+- "Is https://cloudflare.com up right now?"
 - "Check DNS propagation for example.com NS records across all global servers"
 
 ## License
