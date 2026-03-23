@@ -51,8 +51,16 @@ Add to your `claude_desktop_config.json`:
 
 ### Claude Code
 
+Available globally (all projects):
+
 ```bash
-claude mcp add nslookup -- npx -y @nslookup-io/mcp-server
+claude mcp add nslookup --scope user -- npx -y @nslookup-io/mcp-server
+```
+
+Or for a specific project only:
+
+```bash
+claude mcp add nslookup --scope project -- npx -y @nslookup-io/mcp-server
 ```
 
 ### Manual / Local
