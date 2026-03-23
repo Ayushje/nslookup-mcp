@@ -95,6 +95,12 @@ Once configured, you can ask Claude things like:
 - "Is https://cloudflare.com up right now?"
 - "Check DNS propagation for example.com NS records across all global servers"
 
+## Feedback
+
+We'd love to hear from you! At [nslookup.io](https://nslookup.io), we're building a fast, reliable, and free DNS lookup tool and monitoring platform for everyone — from developers and sysadmins to everyday internet users.
+
+Your feedback is what helps us improve. Whether you've spotted a bug, have a feature idea, or just want to share your thoughts — we're listening. [Contact us](https://nslookup.io/contact-us/).
+
 ## License
 
-MIT
+Apache 2.0
