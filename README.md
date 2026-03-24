@@ -33,19 +33,51 @@
 | `security_scan` | Scan a domain for security issues — SPF/DKIM/DMARC, cookie security, DNS misconfigurations |
 | `uptime_check` | One-time HTTP uptime check — status, response time, HTTP status code |
 
-### Supported DNS Record Types
-
-A, AAAA, AFSDB, APL, AXFR, CAA, CDNSKEY, CDS, CERT, CNAME, CSYNC, DHCID, DLV, DNAME, DNSKEY, DS, EUI48, EUI64, HINFO, HIP, HTTPS, IPSECKEY, IXFR, KEY, KX, LOC, MX, NAPTR, NS, NSEC, NSEC3, NSEC3PARAM, NXT, OPENPGPKEY, OPT, PTR, RP, RRSIG, SIG, SMIMEA, SOA, SPF, SRV, SSHFP, SVCB, TA, TKEY, TLSA, TSIG, TXT, URI, ZONEMD
-
-### DNS Servers
-
-`cloudflare`, `google`, `quad9`, `opendns`, `authoritative`, and regional servers in South Africa, Australia, India, Netherlands, Canada, USA, Brazil, Ukraine, Russia.
-
 ## Setup
 
-### Claude Desktop
+### Claude Desktop — Remote Connector (Recommended)
 
-Add to your `claude_desktop_config.json`:
+The easiest way to get started. No installation required.
+
+1. Open **Claude Desktop**
+2. Go to **Settings** (click your profile icon or use the menu)
+3. In the left sidebar, click **Connectors**
+4. Click **"Add custom connector"** at the bottom
+5. Enter the following:
+   - **Name:** `nslookup`
+   - **URL:** `https://mcp.nslookup.io/mcp`
+6. Click **Add** to confirm
+
+Done — Claude can now use all 8 DNS and security tools. Try asking _"Check the SSL certificate for github.com"_.
+
+### ChatGPT
+
+1. Open **ChatGPT** (desktop app or web)
+2. Go to **Settings** (click your profile icon)
+3. Navigate to **Connected apps** (or **Tools & integrations**)
+4. Click **"Add custom integration"** or **"Add MCP server"**
+5. Enter the following:
+   - **Name:** `nslookup`
+   - **URL:** `https://mcp.nslookup.io/mcp`
+6. Save the connection
+
+Done — ChatGPT can now perform DNS lookups, certificate checks, and security scans.
+
+### Any MCP Client (Remote)
+
+Any MCP-compatible client that supports Streamable HTTP transport can connect using:
+
+```
+https://mcp.nslookup.io/mcp
+```
+
+No API key or authentication required.
+
+---
+
+### Claude Desktop — Local (via config JSON)
+
+If you prefer running the server locally (requires Node.js 18+), add to your `claude_desktop_config.json`:
 
 ```json
 {
@@ -72,15 +104,43 @@ Or for a specific project only:
 claude mcp add nslookup --scope project -- npx -y @nslookup-io/mcp-server
 ```
 
-### Manual / Local
+### Cursor
 
-```bash
-git clone https://github.com/nslookup-io/nslookup-mcp.git
-cd nslookup-mcp
-npm install
-npm run build
-npm start
+Add to your Cursor MCP settings (`.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "nslookup": {
+      "command": "npx",
+      "args": ["-y", "@nslookup-io/mcp-server"]
+    }
+  }
+}
 ```
+
+### Windsurf
+
+Add to your Windsurf MCP config (`~/.codeium/windsurf/mcp_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "nslookup": {
+      "command": "npx",
+      "args": ["-y", "@nslookup-io/mcp-server"]
+    }
+  }
+}
+```
+
+## Supported DNS Record Types
+
+A, AAAA, AFSDB, APL, AXFR, CAA, CDNSKEY, CDS, CERT, CNAME, CSYNC, DHCID, DLV, DNAME, DNSKEY, DS, EUI48, EUI64, HINFO, HIP, HTTPS, IPSECKEY, IXFR, KEY, KX, LOC, MX, NAPTR, NS, NSEC, NSEC3, NSEC3PARAM, NXT, OPENPGPKEY, OPT, PTR, RP, RRSIG, SIG, SMIMEA, SOA, SPF, SRV, SSHFP, SVCB, TA, TKEY, TLSA, TSIG, TXT, URI, ZONEMD
+
+## DNS Servers
+
+`cloudflare`, `google`, `quad9`, `opendns`, `authoritative`, and regional servers in South Africa, Australia, India, Netherlands, Canada, USA, Brazil, Ukraine, Russia.
 
 ## Configuration
 
@@ -90,7 +150,7 @@ npm start
 
 ## Example Prompts
 
-Once configured, you can ask Claude things like:
+Once connected, try asking your AI assistant:
 
 - "What are the DNS records for github.com?"
 - "Check the MX records for google.com"
