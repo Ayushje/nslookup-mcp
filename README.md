@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>MCP Server for nslookup.io</strong><br/>
-  DNS lookups, SSL certificate checks, security scanning, and domain intelligence — via the Model Context Protocol.
+  DNS lookups, SSL certificate checks, security scanning, GEO (AI readiness) scoring, and domain intelligence — via the Model Context Protocol.
 </p>
 
 <p align="center">
@@ -33,6 +33,12 @@
 | `security_scan` | Scan a domain for security issues — SPF/DKIM/DMARC, cookie security, DNS misconfigurations |
 | `uptime_check` | One-time HTTP uptime check — status, response time, HTTP status code |
 | `uptime_check_multi` | Check if a site is up from 7 global locations — Amsterdam, Sydney, London, Frankfurt, Delhi, Warsaw, South Carolina |
+
+### GEO (AI Readiness) Tools
+
+| Tool | Description |
+|------|-------------|
+| `geo_checker` | Check a domain's GEO (Generative Engine Optimization) score — AI crawler access, structured data, entity signals, content extractability, and prioritized recommendations |
 
 ## Setup
 
@@ -165,6 +171,9 @@ Once connected, try asking your AI assistant:
 - "Is https://cloudflare.com up right now?"
 - "Check if github.com is accessible from all global locations"
 - "Check DNS propagation for example.com NS records across all global servers"
+- "Check the GEO score for github.com"
+- "Is example.com optimized for AI search engines?"
+- "Which AI crawlers does cloudflare.com block?"
 
 ## Feedback
 

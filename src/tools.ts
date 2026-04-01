@@ -368,4 +368,33 @@ export function registerTools(server: McpServer): void {
       }
     }
   );
+
+  // Tool 10: GEO Checker (Generative Engine Optimization)
+  server.tool(
+    "geo_checker",
+    "Check a domain's GEO (Generative Engine Optimization) score — how well the site is optimized for AI search engines like ChatGPT, Gemini, Claude, and Perplexity. Returns three scores (Technical Readiness, Entity Readiness, Answer Readiness), AI crawler access status, structured data analysis, and prioritized recommendations.",
+    {
+      domain: z.string().describe("Domain name to check GEO score for (e.g. github.com)"),
+    },
+    async ({ domain }) => {
+      try {
+        const result = await apiPost(
+          "/v1/geo/check",
+          { domain },
+          { prefix: "/portal-api", timeout: 15000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
 }
