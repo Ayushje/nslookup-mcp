@@ -24,10 +24,11 @@
 | `dns_propagation` | Check DNS propagation across 18+ global servers (Cloudflare, Google, Quad9, regional, authoritative) |
 | `webservers` | Get IPv4 and IPv6 addresses for a domain |
 
-### Security & Certificate Tools
+### DNS Health & Security Tools
 
 | Tool | Description |
 |------|-------------|
+| `dns_health` | **NEW** — Run a DNS health audit (39 checks across DNSSEC, MX, hygiene, TTL, nameservers, CAA, operational maturity) with severity-weighted scoring |
 | `ssl_certificate` | Check SSL/TLS certificate — issuer, expiry, chain validity, cipher strength, SAN domains, TLS version |
 | `bimi_vmc` | Check BIMI record and VMC (Verified Mark Certificate) — logo URL, trademark info, certificate expiry |
 | `security_scan` | Scan a domain for security issues — SPF/DKIM/DMARC, cookie security, DNS misconfigurations |
@@ -55,7 +56,7 @@ The easiest way to get started. No installation required.
    - **URL:** `https://mcp.nslookup.io/mcp`
 6. Click **Add** to confirm
 
-Done — Claude can now use all 8 DNS and security tools. Try asking _"Check the SSL certificate for github.com"_.
+Done — Claude can now use all 11 DNS, security, and health tools. Try asking _"Run a DNS health check on github.com"_.
 
 ### ChatGPT
 
@@ -165,6 +166,9 @@ Once connected, try asking your AI assistant:
 - "What IP addresses does cloudflare.com resolve to?"
 - "Show me the DNSKEY records for example.com"
 - "Check the SPF record for amazon.com"
+- "Run a DNS health check on example.com"
+- "What's the DNSSEC status of cloudflare.com?"
+- "Check the DNS health score for my-domain.com — are there any critical issues?"
 - "Check the SSL certificate for github.com"
 - "Does google.com have a BIMI record?"
 - "Run a security scan on example.com"

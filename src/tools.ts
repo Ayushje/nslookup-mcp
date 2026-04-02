@@ -369,7 +369,36 @@ export function registerTools(server: McpServer): void {
     }
   );
 
-  // Tool 10: GEO Checker (Generative Engine Optimization)
+  // Tool 10: DNS Health Report
+  server.tool(
+    "dns_health",
+    "Run a comprehensive DNS health audit on a domain — 39 checks across 7 categories: DNSSEC (chain of trust, algorithms, validation), MX & email (PTR, MTA-STS, redundancy), DNS hygiene (SPF conflicts, wildcards, apex CNAME), TTL & SOA configuration, nameserver setup (diversity, lame delegation, EDNS0), CAA certificates, and operational maturity (security.txt, abuse mailbox). Returns an overall severity-weighted score (0–100) plus per-category scores.",
+    {
+      domain: z.string().describe("Domain name to check DNS health for (e.g. example.com)"),
+    },
+    async ({ domain }) => {
+      try {
+        const result = await apiGet(
+          `/v1/dns-health/${encodeURIComponent(domain)}`,
+          {},
+          { prefix: "/api", timeout: 30000 }
+        );
+        return { content: [{ type: "text", text: formatJson(result) }] };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
+
+  // Tool 11: GEO Checker (Generative Engine Optimization)
   server.tool(
     "geo_checker",
     "Check a domain's GEO (Generative Engine Optimization) score — how well the site is optimized for AI search engines like ChatGPT, Gemini, Claude, and Perplexity. Returns three scores (Technical Readiness, Entity Readiness, Answer Readiness), AI crawler access status, structured data analysis, and prioritized recommendations.",

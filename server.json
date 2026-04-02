@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.venomseven/nslookup",
-  "description": "DNS lookups, SSL certs, security scans, GEO (AI readiness), uptime checks via nslookup.io",
+  "description": "DNS lookups, DNS health reports, SSL certs, security scans, GEO (AI readiness), uptime checks via nslookup.io",
   "repository": {
     "url": "https://github.com/NsLookup-io/nslookup-mcp",
     "source": "github"
   },
-  "version": "1.2.0",
+  "version": "1.3.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@nslookup-io/mcp-server",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "transport": {
         "type": "stdio"
       }
